@@ -2,6 +2,8 @@ import React from 'react';
 import SelectionBox from '../selectionBox/SelectionBox';
 import Button from '../button/Button';
 import ProgressBar from '../progressBar/ProgressBar';
+import {Icon} from 'semantic-ui-react'
+import ModalComponent from '../modalComponent/ModalComponent'
 
 import './Styles.scss';
 
@@ -9,6 +11,7 @@ const LearningModule = ({setGameStatus}) => {
   const [currentQuestionId, setCurrentQuestionId] = React.useState(0);
   const [quizData, setQuizData] = React.useState({});
   const [showLoader, setShowLoader] = React.useState(false);
+  const [openModal, setOpenModal] = React.useState(false)
 
   let currentQuestion = quizData.questionArr ? quizData.questionArr[currentQuestionId]: {};
   React.useEffect(()=>{
@@ -56,6 +59,10 @@ const LearningModule = ({setGameStatus}) => {
             <div className="learningModule--title">
               { currentQuestion.title }
             </div>
+            <div className="learningModule--infoIcon">
+              <Icon name="info circle" onClick={()=>setOpenModal(true)}/>
+            </div>
+           <ModalComponent openModal={openModal} setOpenModal={setOpenModal} content={currentQuestion.additionalInfo}/>
             <div className="learningModule--subHeader">
               { currentQuestion.additionalInfo }
             </div>

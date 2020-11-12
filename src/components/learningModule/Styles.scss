@@ -71,4 +71,10 @@
             }
         }
     }
+
+    &--infoIcon {
+        @media only screen and (min-width: $mobile) {
+            display: none;
+        }
+    } 
 }
